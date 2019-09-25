@@ -37,7 +37,7 @@ export default {
     messages() {
       return this.chatMessages
     },
-    username() {
+    user() {
       return this.$store.state.AuthModule.user
     }
   },
@@ -90,7 +90,7 @@ export default {
     sendMessage() {
       if (this.content !== '') {
         this.$store.dispatch('ChatModule/sendMessage', {
-          username: this.username,
+          user: this.user,
           content: this.content,
           date: Date.now()
         })

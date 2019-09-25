@@ -14,7 +14,7 @@ export const mutations = {
 export const actions = {
   sendMessage({ commit }, payload) {
     const message = {
-      user: payload.username,
+      user: payload.user,
       content: payload.content,
       date: payload.date
     }

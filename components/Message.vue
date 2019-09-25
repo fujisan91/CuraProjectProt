@@ -4,7 +4,7 @@
       class="message"
       v-for="(message,index) in messages"
       :key="index"
-      :class="{own: message.user.username == username}"
+      :class="{own: message.user.id == user.id && message.user.username == user.username}"
     >
       <div
         class="username"
@@ -26,11 +26,7 @@ export default {
   },
   props: ['messages'],
   computed: {
-    username() {
-      console.warn(this.$store.state.AuthModule.user.username)
-      return this.$store.state.AuthModule.user.username
-    },
-    userid() {
+    user() {
       console.warn(this.$store.state.AuthModule.user)
       return this.$store.state.AuthModule.user
     }
