@@ -1,27 +1,29 @@
 <template>
-  <v-container>
-    <v-layout row>
+  <v-container color="secondary">
+    <v-layout row color="secondary">
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-card-text>
             <v-container>
-              <v-layout row>
-                <v-flex xs12>
-                  <v-text-field
-                    name="name"
-                    label="name"
-                    id="name"
-                    v-model="name"
-                    type="name"
-                    required
-                  ></v-text-field>
-                </v-flex>
-              </v-layout>
-              <v-layout>
-                <v-flex xs12 @click="onSignin">
-                  <v-btn type="submit" :loading="loading">チャットを始める</v-btn>
-                </v-flex>
-              </v-layout>
+              <form @submit.prevent="onSignin">
+                <v-layout row>
+                  <v-flex xs12>
+                    <v-text-field
+                      name="name"
+                      label="name"
+                      id="name"
+                      v-model="name"
+                      type="e-mail"
+                      required
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout>
+                  <v-flex xs12>
+                    <v-btn type="submit" :loading="loading" color="primary">チャットを始める</v-btn>
+                  </v-flex>
+                </v-layout>
+              </form>
             </v-container>
           </v-card-text>
         </v-card>

@@ -127,7 +127,8 @@ export default {
   bottom: 0;
   height: 4.9rem;
   width: 100%;
-  background-color: #424142;
+  background-color: #eaf0fb;
+  color: #000000;
   box-shadow: 0 -5px 10px -5px rgba(0, 0, 0, 0.2);
 }
 .typer input[type='text'] {
@@ -145,7 +146,8 @@ export default {
   height: calc(100vh - 9.5rem);
   overflow-y: auto;
   padding: 10px;
-  background-color: #303030;
+  background-color: #ffffff;
+  color: #ffffff;
 }
 .message {
   margin-bottom: 3px;
@@ -154,7 +156,7 @@ export default {
   text-align: right;
 }
 .message.own .content {
-  background-color: lightskyblue;
+  background-color: #69b6cf;
 }
 .chat-container .username {
   font-size: 18px;
@@ -162,7 +164,7 @@ export default {
 }
 .chat-container .content {
   padding: 8px;
-  background-color: lightgreen;
+  background-color: #69b6cf;
   border-radius: 10px;
   display: inline-block;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
