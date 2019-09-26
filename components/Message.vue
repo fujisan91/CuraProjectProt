@@ -6,12 +6,12 @@
       :key="index"
       :class="{own: message.user.id == user.id && message.user.username == user.username}"
     >
+      <div style="margin-top: 20px"></div>
       <div
         class="username"
         v-if="index>0 && messages[index-1].user != message.user"
       >{{message.user.username}}</div>
       <div class="username" v-if="index == 0">{{message.user.username}}</div>
-      <div style="margin-top: 5px"></div>
       <div class="content">
         <div v-html="message.content"></div>
       </div>
@@ -33,3 +33,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.username {
+  color: #69b6cf;
+}
+</style>
