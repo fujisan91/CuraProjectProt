@@ -21,13 +21,15 @@
 
 <script>
 export default {
-  data() {
-    return {}
-  },
   props: ['messages'],
   computed: {
     user() {
-      console.warn(this.$store.state.AuthModule.user)
+      if (this.$store.state.AuthModule.user === null) {
+        return {
+          id: 'default',
+          name: 'default'
+        }
+      }
       return this.$store.state.AuthModule.user
     }
   }
