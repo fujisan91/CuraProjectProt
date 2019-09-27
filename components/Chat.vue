@@ -10,7 +10,7 @@
     <div class="typer">
       <!-- v-on:keyup.enterによってエンターが押されたときにsendMessageを実行する -->
       <!-- 入力欄に入力された値をdataにバインディングする処理を追加 -->
-      <input type="text" placeholder="Type here..." v-on:keyup.enter="sendMessage" ！！ここに追加！！ />
+      <input type="text" placeholder="Type here..." v-on:keyup.enter="sendMessage" />
     </div>
   </div>
 </template>
