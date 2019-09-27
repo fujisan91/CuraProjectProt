@@ -1,20 +1,24 @@
+// ここからテンプレート
 <template>
   <div style="position: relative;">
+    <!-- v-on:scrollはブラウザのスクロールを検知してonScrollを実行する。 -->
     <div class="chat-container" v-on:scroll="onScroll" ref="chatContainer">
+      <!-- Messageコンポーネントにmessagesを渡して表示。 -->
       <Message :messages="messages"></Message>
     </div>
+    <!-- 入力欄を作ってね -->
     <div class="typer">
-      <input
-        type="text"
-        placeholder="Type here..."
-        v-on:keyup.enter="sendMessage"
-        v-model="content"
-      />
+      <!-- v-on:keyup.enterによってエンターが押されたときにsendMessageを実行する -->
+      <!-- 入力欄に入力された値をdataにバインディングする処理を追加 -->
+      <input type="text" placeholder="Type here..." v-on:keyup.enter="sendMessage" ！！ここに追加！！ />
     </div>
   </div>
 </template>
+// ここまでテンプレート
 
+// ここからロジック
 <script>
+// コンポーネントをインポート
 import Message from './Message.vue'
 
 export default {
@@ -23,41 +27,58 @@ export default {
   },
   data() {
     return {
-      content: '',
-      chatMessages: [],
-      currentRef: {},
+      content: '', // 入力された値
+      chatMessages: [], // ルームに投稿されたメッセージ群
+      currentRef: {}, // firestoreの参照
       loading: false,
       totalChatHeight: 0
     }
   },
+  // マウントされたときにチャット群をロード
   mounted() {
     this.loadChat()
   },
   computed: {
+    //ここで生成されるmessagesをMessageコンポーネントに渡している。
     messages() {
       return this.chatMessages
     },
+    // チャットルームに入ったuserを取得して、だれが発言したのかをメッセージと紐づける
     user() {
       return this.$store.state.AuthModule.user
     }
   },
   methods: {
+    // チャット群を読み込む
     loadChat() {
+      // thisを保持
       const that = this
       this.totalChatHeight = this.$refs.chatContainer.scrollHeight
       this.loading = false
+
+      // chatMessages初期化
       this.chatMessages = []
+
+      // firestoreのコレクションへの参照を取得
       this.currentRef = this.$firestore
         .collection('messages')
         .orderBy('date', 'asc')
+
+      // firestoreのコレクションを監視して、新しいメッセージが登録されたら
+      // chatMessagesに追加する。
       this.currentRef.onSnapshot(function(snapshot) {
         snapshot.docChanges().forEach(function(change) {
           const post = change.doc.data()
-          that.chatMessages.push(post)
+
+          // ⓵！！ここにchatMessagesにpostを追加する処理を書く！！
+
+          // 最後までスクロールする処理
           that.scrollToEnd()
         })
       })
     },
+
+    // スクロールを検知してメッセージ取得(今回はいじらない)
     onScroll() {
       let scrollValue = this.$refs.chatContainer.scrollTop
       const that = this
@@ -87,22 +108,29 @@ export default {
           })
       }
     },
+
+    // ⓹メッセージを送る処理
     sendMessage() {
       if (this.content !== '') {
         this.$store.dispatch('ChatModule/sendMessage', {
-          user: this.user,
-          content: this.content,
+          user: something, // ！！ユーザーを渡す！！
+          content: something, //！！入力された内容を渡す！！
           date: Date.now()
         })
-        this.content = ''
+
+        // ！！ここに入力された内容を消す処理を追加！！
       }
     },
+
+    // ここはいじらない
     scrollToEnd() {
       this.$nextTick(() => {
         let container = this.$el.querySelector('.chat-container')
         container.scrollTop = container.scrollHeight
       })
     },
+
+    // ここはいじらない
     scrollTo() {
       this.$nextTick(() => {
         let currentHeight = this.$refs.chatContainer.scrollHeight
@@ -114,6 +142,7 @@ export default {
   }
 }
 </script>
+// ここまでロジック
 
 <style>
 .scrollable {

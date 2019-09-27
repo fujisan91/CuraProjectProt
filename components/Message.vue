@@ -2,18 +2,24 @@
   <div>
     <div
       class="message"
-      v-for="(message,index) in messages"
+      ⓶！！ここにメッセージをループする処理を追加
       :key="index"
-      :class="{own: message.user.id == user.id && message.user.username == user.username}"
+      :class="{own: message.user.id == ユーザーのIDと比較 && message.user.username == ユーザーの名前と比較}"
     >
       <div style="margin-top: 20px"></div>
       <div
         class="username"
-        v-if="index>0 && messages[index-1].user != message.user"
-      >{{message.user.username}}</div>
-      <div class="username" v-if="index == 0">{{message.user.username}}</div>
+        ⓷ここの?を編集して条件処理を追加
+        ???="index>0 && messages[index-1].user != message.user"
+      >
+        <!-- ユーザーの名前を表示 -->
+      </div>
+      <div class="username" v-if="index == 0">
+        <!-- ユーザーの名前を表示 -->
+      </div>
       <div class="content">
-        <div v-html="message.content"></div>
+        <!-- ⓸メッセージの内容を表示するためにv-htmlにメッセージの内容を渡す。 -->
+        <div v-html></div>
       </div>
     </div>
   </div>
