@@ -1,7 +1,7 @@
 <template>
   <div style="position: relative;">
     <div class="chat-container" v-on:scroll="onScroll" ref="chatContainer">
-      <Message :messages="messages" @imageLoad="scrollToEnd"></Message>
+      <Message :messages="messages"></Message>
     </div>
     <div class="typer">
       <input

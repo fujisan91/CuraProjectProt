@@ -13,6 +13,12 @@ export const mutations = {
 
 export const actions = {
   sendMessage({ commit }, payload) {
+    if (payload.user === null) {
+      payload.user = {
+        id: 'defaultid',
+        name: 'default'
+      }
+    }
     const message = {
       user: payload.user,
       content: payload.content,
