@@ -51,8 +51,6 @@ export default {
   methods: {
     // チャット群を読み込む
     loadChat() {
-      // thisを保持
-      const that = this
       this.totalChatHeight = this.$refs.chatContainer.scrollHeight
       this.loading = false
 
@@ -66,14 +64,14 @@ export default {
 
       // firestoreのコレクションを監視して、新しいメッセージが登録されたら
       // chatMessagesに追加する。
-      this.currentRef.onSnapshot(function(snapshot) {
-        snapshot.docChanges().forEach(function(change) {
+      this.currentRef.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           const post = change.doc.data()
 
           // ⓵！！ここにchatMessagesにpostを追加する処理を書く！！
 
           // 最後までスクロールする処理
-          that.scrollToEnd()
+          this.scrollToEnd()
         })
       })
     },
@@ -81,7 +79,6 @@ export default {
     // スクロールを検知してメッセージ取得(今回はいじらない)
     onScroll() {
       let scrollValue = this.$refs.chatContainer.scrollTop
-      const that = this
       if (scrollValue < 100 && !this.loading) {
         this.totalChatHeight = this.$refs.chatContainer.scrollHeight
         this.loading = true
@@ -93,18 +90,18 @@ export default {
         this.$firestore
           .collection('messages')
           .get()
-          .then(function(snapshot) {
+          .then((snapshot) => {
             let tempArray = []
-            snapshot.forEach(function(item) {
+            snapshot.forEach((item) =>{
               tempArray.push(item)
             })
             if (tempArray[0].key === tempArray[1].key) return
             tempArray.reverse()
-            tempArray.forEach(function(child) {
-              that.chatMessages.unshift(message)
-              that.scrollTo()
+            tempArray.forEach((child) =>{
+              this.chatMessages.unshift(message)
+              this.scrollTo()
             })
-            that.loading = false
+            this.loading = false
           })
       }
     },
