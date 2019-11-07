@@ -16,8 +16,24 @@ export const actions = {
     if (payload.user === null) {
       payload.user = {
         id: 'defaultid',
-        name: 'default'
+        name: 'nameを設定する処理を間違えてるよ！'
       }
+    }
+    if (payload.content === null) {
+      const message = {
+        user: payload.user,
+        content: 'contentを設定する処理を間違えてるよ！',
+        date: payload.date
+      }
+      this.$firestore
+        .collection('messages')
+        .doc()
+        .set(message)
+        .then((data) => {})
+        .catch((error) => {
+          console.log(error)
+        })
+      return
     }
     const message = {
       user: payload.user,

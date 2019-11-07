@@ -3,8 +3,8 @@
   <div style="position: relative;">
     <!-- v-on:scrollはブラウザのスクロールを検知してonScrollを実行する。 -->
     <div class="chat-container" v-on:scroll="onScroll" ref="chatContainer">
-      <!-- Messageコンポーネントにmessagesを渡して表示。 -->
-      <Message :messages="messages"></Message>
+      <!-- Messageコンポーネントにmessagesを渡そう！ -->
+      <Message></Message>
     </div>
     <!-- 入力欄を作ってね -->
     <div class="typer">
@@ -110,8 +110,8 @@ export default {
     sendMessage() {
       if (this.content !== '') {
         this.$store.dispatch('ChatModule/sendMessage', {
-          user: something, // ！！ユーザーを渡す！！
-          content: something, //！！入力された内容を渡す！！
+          user: null, // nullじゃなくて！！ユーザーを渡す！！
+          content: null, // nullじゃなくて！！入力された内容を渡す！！
           date: Date.now()
         })
 
