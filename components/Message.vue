@@ -6,11 +6,11 @@
       :key="index"
       :class="{own: message.user.id == ユーザーのIDと比較 && message.user.username == ユーザーの名前と比較}"
     >
-      <div style="margin-top: 20px"></div>
+      <div style="margin-top: 9px"></div>
       <div
         class="username"
         ⓷ここの?を編集して条件処理を追加
-        ???="index>0 && messages[index-1].user != message.user"
+        ???="index>0 && messages[index-1].user.username != message.user.username"
       >
         <!-- ユーザーの名前を表示 -->
       </div>
