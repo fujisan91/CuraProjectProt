@@ -43,24 +43,25 @@ export default {
   },
   methods: {
     loadChat() {
-      const that = this
       this.totalChatHeight = this.$refs.chatContainer.scrollHeight
       this.loading = false
       this.chatMessages = []
       this.currentRef = this.$firestore
         .collection('messages')
         .orderBy('date', 'asc')
-      this.currentRef.onSnapshot(function(snapshot) {
-        snapshot.docChanges().forEach(function(change) {
+      console.log(this)
+      this.currentRef.onSnapshot((snapshot) => {
+        console.log(this)
+        snapshot.docChanges().forEach((change) => {
+          console.log(this)
           const post = change.doc.data()
-          that.chatMessages.push(post)
-          that.scrollToEnd()
+          this.chatMessages.push(post)
+          this.scrollToEnd()
         })
       })
     },
     onScroll() {
       let scrollValue = this.$refs.chatContainer.scrollTop
-      const that = this
       if (scrollValue < 100 && !this.loading) {
         this.totalChatHeight = this.$refs.chatContainer.scrollHeight
         this.loading = true
@@ -72,18 +73,18 @@ export default {
         this.$firestore
           .collection('messages')
           .get()
-          .then(function(snapshot) {
+          .then((snapshot) => {
             let tempArray = []
             snapshot.forEach(function(item) {
               tempArray.push(item)
             })
             if (tempArray[0].key === tempArray[1].key) return
             tempArray.reverse()
-            tempArray.forEach(function(child) {
-              that.chatMessages.unshift(message)
-              that.scrollTo()
+            tempArray.forEach((child) => {
+              this.chatMessages.unshift(message)
+              this.scrollTo()
             })
-            that.loading = false
+            this.loading = false
           })
       }
     },
