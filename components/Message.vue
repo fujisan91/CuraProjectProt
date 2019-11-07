@@ -1,25 +1,19 @@
 <template>
   <div>
-    <!-- ⓶propsで受け取ったmessagesをループしてmessageとindexを取り出す -->
     <div
       class="message"
+      v-for="(message,index) in messages"
       :key="index"
-      :class="{own: message.user.id == ユーザーのIDと比較 && message.user.username == ユーザーの名前と比較}"
+      :class="{own: message.user.id == user.id && message.user.username == user.username}"
     >
       <div style="margin-top: 9px"></div>
-      <!-- ⓷ここの?を編集して条件処理を追加 -->
       <div
         class="username"
-        ???="index>0 && messages[index-1].user.username != message.user.username"
-      >
-        <!-- ここにユーザーの名前を表示 -->
-      </div>
-      <div class="username" v-if="index == 0">
-        <!-- ここにユーザーの名前を表示 -->
-      </div>
+        v-if="index>0 && messages[index-1].user.username != message.user.username"
+      >{{message.user.username}}</div>
+      <div class="username" v-if="index == 0">{{message.user.username}}</div>
       <div class="content">
-        <!-- ⓸メッセージの内容を表示するためにv-htmlにメッセージの内容を渡す。 -->
-        <div></div>
+        <div v-html="message.content"></div>
       </div>
     </div>
   </div>
@@ -27,10 +21,7 @@
 
 <script>
 export default {
-  // 親コンポーネントからpropsでmessagesを受け取っている
   props: ['messages'],
-
-  // computedを使うと算出後のデータをdataとして扱える。つまり算出結果にthis.userとアクセスできる
   computed: {
     user() {
       if (this.$store.state.AuthModule.user === null) {
