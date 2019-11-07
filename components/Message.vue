@@ -6,10 +6,10 @@
       :key="index"
       :class="{own: message.user.id == user.id && message.user.username == user.username}"
     >
-      <div style="margin-top: 20px"></div>
+      <div style="margin-top: 9px"></div>
       <div
         class="username"
-        v-if="index>0 && messages[index-1].user != message.user"
+        v-if="index>0 && messages[index-1].user.username != message.user.username"
       >{{message.user.username}}</div>
       <div class="username" v-if="index == 0">{{message.user.username}}</div>
       <div class="content">
