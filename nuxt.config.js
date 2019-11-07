@@ -1,5 +1,3 @@
-import colors from 'vuetify/es5/util/colors'
-
 export default {
   mode: 'spa',
   /*
@@ -30,11 +28,9 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@plugins/firebase.js'],
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/vuetify'],
   /*
    ** Nuxt.js modules
    */
@@ -43,23 +39,6 @@ export default {
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
    */
-  vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    theme: {
-      dark: true,
-      themes: {
-        dark: {
-          primary: '#39A3C0',
-          accent: '#ff9800',
-          secondary: '#EAF0FB',
-          info: '#ff9800',
-          warning: '#ff9800',
-          error: '#ff9800',
-          success: '#ff9800'
-        }
-      }
-    }
-  },
   /*
    ** Build configuration
    */
