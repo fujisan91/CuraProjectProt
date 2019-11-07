@@ -75,7 +75,7 @@ export default {
           .get()
           .then((snapshot) => {
             let tempArray = []
-            snapshot.forEach(function(item) {
+            snapshot.forEach((item) => {
               tempArray.push(item)
             })
             if (tempArray[0].key === tempArray[1].key) return
