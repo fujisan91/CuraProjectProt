@@ -16,7 +16,7 @@ export const actions = {
     if (payload.user === null) {
       payload.user = {
         id: 'defaultid',
-        name: 'nameを設定する処理を間違えてるよ！'
+        username: 'nameを設定する処理を間違えてるよ！'
       }
     }
     if (payload.content === null) {
